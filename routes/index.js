@@ -67,6 +67,17 @@ router.get('/basket', function(req, res, next) {
   res.render('basket', { title: 'basket' });
 });
 
+
+
+// Route mytickets
+
+
+router.get('/mytickets', function(req, res, next) {
+
+  res.render('mytickets', { title: 'mytickets' });
+});
+
+
 module.exports = router;
 
 
