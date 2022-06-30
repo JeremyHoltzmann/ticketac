@@ -12,7 +12,6 @@ a {
 }
 
 .home {
-
  
   color: #FFFFFF;
   text-shadow: 1px 1px 1px black;
@@ -30,3 +29,4 @@ a {
   min-height: 100vh;
   display: flex;
 }
+

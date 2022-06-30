@@ -53,6 +53,15 @@ router.get('/findtrip', function(req, res, next) {
   res.render('findtrip', { title: 'findtrip' });
 });
 
+
+// Route basket
+
+
+router.get('/basket', function(req, res, next) {
+
+  res.render('basket', { title: 'basket' });
+});
+
 module.exports = router;
 
 
