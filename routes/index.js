@@ -41,6 +41,9 @@ router.post('/sign-in', async function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/journey', async function (req, res, next){
+  res.render('journey', {basketOrder: 0})
+});
 
 module.exports = router;
 
