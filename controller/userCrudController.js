@@ -23,7 +23,7 @@ class userCrudControler extends genericCrudController
 
    async getUser(email, password)
     {
-        var user = await (await this.modelController.findOne({$and: [{email: email}, {password: password}]})).populate('journeys').populate('basket');
+        var user = await (await this.modelController.findOne({$and: [{email: email}, {password: password}]})).populate('journeys', 'basket');
         return user;
     }
 
@@ -31,19 +31,23 @@ class userCrudControler extends genericCrudController
     {
         var user = await modelController.findById(userId);
 
-        await modelController.updateOne({_id: userID},
+        await this.modelController.updateOne({_id: userID},
             { $addToSet: {journeys: journeyId}});
     }
 
     async addJourneyToBasketById(userId, journeyId)
     {
+        var user = await this.modelController.findById(userId);
 
-        await modelController.updateOne({_id: userId},
+       console.log('USER ADDING TO : ', user); 
+        console.log('JOURNEY ID : ', journeyId)
+        
+        await this.modelController.updateOne({_id: userId},
             { $addToSet: {basket: journeyId}});
     }
 
     async clearUserBasket(userId){
-        await modelController.updateOne({_id: userId},
+        await this.modelController.updateOne({_id: userId},
             { $set: {basket: []}});
     }
     

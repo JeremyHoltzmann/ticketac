@@ -14,7 +14,7 @@ class appController  {
     }
 
    async getAllUser(){
-       return await userCrudControler.find();
+       return await this.userCrudControler.find();
    } 
 
    async getUser(email, password){
