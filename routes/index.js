@@ -42,6 +42,14 @@ console.log('USERS : ', user);
 });
 
 
+// Route findtrip
+
+
+router.get('/findtrip', function(req, res, next) {
+
+  res.render('findtrip', { title: 'findtrip' });
+});
+
 module.exports = router;
 
 
