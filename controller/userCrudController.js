@@ -5,6 +5,11 @@ class userCrudControler extends genericCrudController
 {
     async addUser(name, firstName, email, password){
        
+        var user = await this.modelController.findOne({email: email});
+        if (user)    
+            return undefined;
+
+
         var newUser = new this.modelController(
             {
                 name: name,
