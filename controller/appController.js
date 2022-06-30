@@ -17,8 +17,22 @@ class appController  {
        return await userCrudControler.find();
    } 
 
+   async addUser(name, firstName, email, password){
+       return await this.userCrudControler.addUser(name, firstName, email, password);
+   }
+
+   async addJourneyToBasket(userId, journeyId){
+       return await this.userCrudControler.addJourneyToBasketById(userId, journeyId);
+   }
+
+
+
    async getAllJourneys(){
        return await this.journeyCrudControler.find();
+   }
+
+   async getJourneyDepartureArrival(departure, arrival){
+       return await this.journeyCrudControler.getJourneyDepartureArrival(departure, arrival);
    }
 }
 

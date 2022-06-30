@@ -5,7 +5,13 @@ var userSchema = mongoose.Schema({
     firstName: String,
     Email: String,
     password: String,
-    cities: [
+    journeys: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'journeys',
+        }
+    ],
+    basket: [
         {
             type: mongoose.Types.ObjectId,
             ref: 'journeys',
