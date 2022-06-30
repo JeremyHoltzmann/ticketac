@@ -5,7 +5,7 @@ class journeyCrudControler extends genericCrudController
 {
 
     async getJourneyDepartureArrival(departure, arrival){
-        return await this.modelController.find({$and: [{departure: departure}, {arrival: arrival}]});
+        return await this.modelController.find({$and: [{departure: new RegExp(departure, 'i')}, {arrival: new RegExp(arrival, 'i')}]});
     }
 
     async getJourneyDepartureArrivalDate(departure, arrival, date){

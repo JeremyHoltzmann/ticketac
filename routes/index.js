@@ -48,9 +48,14 @@ router.get('/journey', async function (req, res, next){
 // Route findtrip
 
 
-router.get('/findtrip', function(req, res, next) {
+router.get('/findtrip', async function(req, res, next) {
 
-  res.render('findtrip', { title: 'findtrip' });
+  res.render('findTrip');
+});
+
+router.post('/journeys', async function(req, res, next) {
+
+  res.render('journey', {journeys: await appController.getJourneyDepartureArrival(req.body.departure, req.body.arrival)});
 });
 
 
