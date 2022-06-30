@@ -29,4 +29,5 @@ a {
   padding-bottom: 20px;
   min-height: 100vh;
   display: flex;
+  justify-content: center;
 }
