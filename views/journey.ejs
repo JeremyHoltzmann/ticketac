@@ -15,7 +15,11 @@
 
 
         <div class="container">
-            <div>Ticket available on : </div>
+            <% if(journeys.length == 0)
+            {%>
+                <div>Oops ! No trains available</div>
+            <%}else {%>
+                <div>Ticket available on : </div>
             <ul class="list-group col col-12">
                 <% for(var i = 0; i < journeys.length; i++){ %>
                     <div class="list-group-item m-1 p-5 d-inline-flex justify-content-between">
@@ -23,13 +27,19 @@
                         <div class="text-black">Train Departure at : <%= journeys[i].departureTime%></div>
                         <span>
                             <%= journeys[i].price %>€
-                            <button type="button" class="btn btn-danger">OK</button>
+                            <button type="button" class="btn btn-danger">
+                                <a href="/addToBasket?journeyid=<%= journeys[i]._id %>">
+                                    Ok
+                                </a>
+                            </button>
                         </span>
                     </div>
                 <%}%>
 
 
             </ul>
+            <%}%>
+
 
         </div>
           

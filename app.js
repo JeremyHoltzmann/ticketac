@@ -20,7 +20,7 @@ app.use(
    resave: false,
    saveUninitialized: false,
   })
-  );
+);
 
 
 // view engine setup

@@ -32,13 +32,11 @@ router.post('/sign-up', async function(req, res, next) {
 
 router.post('/sign-in', async function(req, res, next) {
 
-  console.log("BODY : ", req.body);
 
   var user = await appController.getUser(req.body.email, req.body.password);  
-
-  console.log('USERS : ', user);
-
-  res.render('index', { title: 'Express' });
+  req.session.user = user;
+  console.log('REQ SESSION : ', req.session);
+  res.render('findTrip', { title: 'Express' });
 });
 
 router.get('/journey', async function (req, res, next){
@@ -77,6 +75,12 @@ router.get('/mytickets', function(req, res, next) {
   res.render('mytickets', { title: 'mytickets' });
 });
 
+
+router.get('/addToBasket', async function(req, res, next) {
+
+  await appController.addJourneyToBasket(req.session.user._id, req.query.journeyid);
+  res.render('basket', { title: 'basket' });
+});
 
 module.exports = router;
 
