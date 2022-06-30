@@ -1,8 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
+var appControllerClass = require('../controller/appController');
+var appController = new appControllerClass();
+
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
+  console.log('GET JOURNEYS : ', await appController.getAllJourneys());
   res.render('index', { title: 'Express' });
 });
 
