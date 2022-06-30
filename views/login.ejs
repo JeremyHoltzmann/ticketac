@@ -10,46 +10,21 @@
   </head>
   <body>
 
-    <div class="home">
-
            <!-- HEADER NAVBAR-->
 
            <div class="row">
             
-<%-include("./partial/navbar.ejs") %>
+            <%-include("./partial/navbar.ejs") %>
+            
+                    </div>  
 
-        </div>  
+    <div class="home">
+
 
         <div class="row">
 
 
           <div class="col-12 text-center get_started">
-          </div>
-
-          <!-- SIGN UP AREA -->
-          <div class="col-12 col-sm-6 text-center">
-
-            <div class="formArea">
-              <h4 class="titleForm">Sign Up</h4>
-
-              <form>
-                <div class="form-group">
-                  <label for="exampleInputUsername">Username</label>
-                  <input type="text" class="form-control" placeholder="Enter username">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control"  placeholder="Enter password">
-                </div>
-
-                <button type="submit" class="btn btn-info">Submit</button>
-              </form>
-            </div>
-
           </div>
 
           <!-- SIGN IN AREA -->
@@ -69,16 +44,54 @@
                   <input name="password" type="password" class="form-control" placeholder="Enter password">
                 </div>
 
-                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="submit" class="btn btn-info btn-danger">Submit</button>
               </form>
 
             </div>
 
           </div>
           
-        </div>
-      </div>
+          <!-- SIGN UP AREA -->
+          <div class="col-12 col-sm-6 text-center">
 
+            <div class="formArea">
+              
+              <h4 class="titleForm">Sign Up</h4>
+
+              <form action= "/sign-up" method="POST">
+                <div class="form-group">
+                  <label for="exampleInputUsername">Name </label>
+                  <input name= "name" type="text" class="form-control" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername">Firstname </label>
+                  <input name= "firstname" type="text" class="form-control" placeholder="Enter firstname">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input name= "email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input name= "password" type="password" class="form-control"  placeholder="Enter password">
+                </div>
+
+                <button type="submit" class="btn btn-info btn-danger">Submit</button>
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+      <div class="text-center text-white ">
+        c 2019
+      </div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

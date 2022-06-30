@@ -15,6 +15,33 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'login' });
 });
 
+// Route Sign-Up
+router.post('/sign-up', async function(req, res, next) {
+
+  console.log("BODY : ", req.body);
+
+var user = await appController.addUser(req.body.name, req.body.firstname, req.body.email, req.body.password);  
+
+
+console.log('USERS : ', user);
+
+  res.render('index', { title: 'Express' });
+});
+
+// Route Sign-In
+
+router.post('/sign-in', async function(req, res, next) {
+
+  console.log("BODY : ", req.body);
+
+var user = await appController.getUser(req.body.email, req.body.password);  
+
+console.log('USERS : ', user);
+
+  res.render('index', { title: 'Express' });
+});
+
+
 module.exports = router;
 
 

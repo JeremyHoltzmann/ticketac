@@ -4,9 +4,7 @@ const genericCrudController = require("./genericCrudController");
 class userCrudControler extends genericCrudController
 {
     async addUser(name, firstName, email, password){
-        var user = await this.modelController.findOne( {email: email})
-        if (user)
-            return false;
+       
         var newUser = new this.modelController(
             {
                 name: name,
@@ -20,7 +18,7 @@ class userCrudControler extends genericCrudController
 
    async getUser(email, password)
     {
-        var user = await (await this.modelController.findOne({$and: [{email: email}, {password: password}]})).populated('journeys').exec();
+        var user = await (await this.modelController.findOne({$and: [{email: email}, {password: password}]})).populate('journeys');
         return user;
     }
 
