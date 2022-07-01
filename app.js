@@ -52,4 +52,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.locals.formatDate = function(stringDate)
+{
+  var date = new Date(stringDate);
+  return (date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear());
+}
+
+
+
 module.exports = app;

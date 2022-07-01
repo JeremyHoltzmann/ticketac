@@ -80,8 +80,18 @@ router.get('/mytickets', function(req, res, next) {
 router.get('/addToBasket', async function(req, res, next) {
 
   await appController.addJourneyToBasket(req.session.user._id, req.query.journeyid);
+  console.log("BASKET ROUTE ", await appController.getUserBasket(req.session.user._id));
   res.render('mytickets', { basket: await appController.getUserBasket(req.session.user._id) });
 });
+
+// Route modal confirmation achat
+
+
+router.get('/confirmAchat', async function(req, res, next) {
+  await appController.addJourneysFromBasketToJourneys(req.session.user._id);
+  res.render('mytickets', {basket: await appController.getUserJourneys(req.session.user._id)});
+});
+
 
 module.exports = router;
 

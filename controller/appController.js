@@ -46,16 +46,17 @@ class appController  {
    }
 
    async getUserBasket(userId){
-       this.userCrudControler.getUserBasket(userId);
+       return await this.userCrudControler.getUserBasket(userId);
    }
 
    async getUserJourneys(userId){
-       await this.userCrudControler.getUserJourneys(userId);
+       return await this.userCrudControler.getUserJourneys(userId);
    }
 
    async addJourneysFromBasketToJourneys(userId){
-       await this.userCrudControler.addJourneysFromBasketToJourneys(userId)
+       return await this.userCrudControler.addJourneysFromBasketToJourneys(userId)
    }
 }
 
 module.exports = appController;
+

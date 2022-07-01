@@ -39,9 +39,6 @@ class userCrudControler extends genericCrudController
     {
         var user = await this.modelController.findById(userId);
 
-       console.log('USER ADDING TO : ', user); 
-        console.log('JOURNEY ID : ', journeyId)
-        
         await this.modelController.updateOne({_id: userId},
             { $addToSet: {basket: journeyId}});
     }
@@ -53,6 +50,7 @@ class userCrudControler extends genericCrudController
     
     async getUserBasket(userId){
         var user = await this.modelController.findById(userId).populate('basket');
+        console.log("USER BASKET : " + user);
         return user.basket;
     }
 
