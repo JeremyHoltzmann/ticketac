@@ -32,8 +32,10 @@ router.post('/sign-in', async function(req, res, next) {
   req.session.user = user;
   res.render('findTrip', { title: 'Express' });
 });
-router.get('/sign-in', async function(req, res, next) {
-  res.render('findTrip', { title: 'Express' });
+
+
+router.get('/signin', async function(req, res, next) {
+  res.render('/findTrip', { title: 'Express' });
 });
 
 
@@ -45,11 +47,11 @@ router.get('/journey', async function (req, res, next){
 
 
 router.get('/findtrip', async function(req, res, next) {
-  if(req.session.user== undefined)
-  {
-    res.redirect('/login');
-    return;
-  }
+  // if(req.session.user== undefined)
+  // {
+  //   res.redirect('/login');
+  //   return;
+  // }
   res.render('/findTrip');
 });
 
