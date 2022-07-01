@@ -35,7 +35,7 @@ router.post('/sign-in', async function(req, res, next) {
 
 
 router.get('/signin', async function(req, res, next) {
-  res.render('/findTrip', { title: 'Express' });
+  res.render('findTrip', { title: 'Express' });
 });
 
 
@@ -52,7 +52,7 @@ router.get('/findtrip', async function(req, res, next) {
   //   res.redirect('/login');
   //   return;
   // }
-  res.render('/findTrip');
+  res.render('findTrip');
 });
 
 router.post('/journeys', async function(req, res, next) {
