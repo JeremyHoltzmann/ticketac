@@ -22,6 +22,12 @@ app.use(
   })
 );
 
+let port = process.env.PORT;
+if (port == null || port == '')
+{
+  port = 8000;
+}
+app.listen(port);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
