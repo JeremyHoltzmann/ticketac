@@ -29,7 +29,13 @@ class appController  {
        return await this.userCrudControler.addJourneyToBasketById(userId, journeyId);
    }
 
+   async getUserBasket(userId){
+       return await this.userCrudControler.getUserBasket(userId);
+   }
 
+   async getUserJourneys(userId){
+       return await this.userCrudControler.getUserJourneys(userId);
+   }
 
    async getAllJourneys(){
        return await this.journeyCrudControler.find();
@@ -37,6 +43,18 @@ class appController  {
 
    async getJourneyDepartureArrival(departure, arrival){
        return await this.journeyCrudControler.getJourneyDepartureArrival(departure, arrival);
+   }
+
+   async getUserBasket(userId){
+       this.userCrudControler.getUserBasket(userId);
+   }
+
+   async getUserJourneys(userId){
+       await this.userCrudControler.getUserJourneys(userId);
+   }
+
+   async addJourneysFromBasketToJourneys(userId){
+       await this.userCrudControler.addJourneysFromBasketToJourneys(userId)
    }
 }
 
