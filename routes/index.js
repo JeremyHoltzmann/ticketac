@@ -66,6 +66,17 @@ router.get('/basket', async function(req, res, next) {
   res.render('basket', { title: 'basket' });
 });
 
+
+
+// Route mytickets
+
+
+router.get('/mytickets', function(req, res, next) {
+
+  res.render('mytickets', { title: 'mytickets' });
+});
+
+
 router.get('/addToBasket', async function(req, res, next) {
 
   await appController.addJourneyToBasket(req.session.user._id, req.query.journeyid);
