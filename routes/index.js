@@ -114,7 +114,7 @@ router.get('/confirmAchat', async function(req, res, next) {
     return;
   }
   await appController.addJourneysFromBasketToJourneys(req.session.user._id);
-  res.render('lastTrip', {basket: await appController.getUserJourneys(req.session.user._id)});
+  res.render('lasttrip', {basket: await appController.getUserJourneys(req.session.user._id)});
 });
 
 
