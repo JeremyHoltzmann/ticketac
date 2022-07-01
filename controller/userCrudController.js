@@ -51,6 +51,22 @@ class userCrudControler extends genericCrudController
             { $set: {basket: []}});
     }
     
+    async getUserBasket(userId){
+        var user = await this.modelController.findById(userId).populate('basket');
+        return user.basket;
+    }
+
+    async getUserJourneys(userId){
+        var user = await this.modelController.findById(userId).populate('journeys');
+        return user.journeys;
+    }
+
+    async addJourneysFromBasketToJourneys(userId){
+        var basket = await this.getUserBasket(userId);
+        this.clearUserBasket(userId);
+        await this.modelController.updateOne({_id: userId},
+            { $set: {basket: basket}});
+    }
 }
 
 module.exports = userCrudControler;

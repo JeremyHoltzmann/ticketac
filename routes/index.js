@@ -60,8 +60,9 @@ router.post('/journeys', async function(req, res, next) {
 // Route basket
 
 
-router.get('/basket', function(req, res, next) {
+router.get('/basket', async function(req, res, next) {
 
+  var basket = await appController.getUserBasket(req.session.user._id);
   res.render('basket', { title: 'basket' });
 });
 
