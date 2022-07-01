@@ -30,12 +30,12 @@ router.post('/sign-in', async function(req, res, next) {
 
   var user = await appController.getUser(req.body.email, req.body.password);  
   req.session.user = user;
-  res.render('findTrip', { title: 'Express' });
+  res.render('findtrip', { title: 'Express' });
 });
 
 
 router.get('/signin', async function(req, res, next) {
-  res.render('findTrip', { title: 'Express' });
+  res.render('findtrip', { title: 'Express' });
 });
 
 
