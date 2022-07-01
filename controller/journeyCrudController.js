@@ -9,7 +9,9 @@ class journeyCrudControler extends genericCrudController
     }
 
     async getJourneyDepartureArrivalDate(departure, arrival, date){
-        return await this.modelController.find({$and: [{departure: departure}, {arrival: arrival}, {date: date}]});
+    
+        var newDate = new Date(date);
+        return await this.modelController.find({$and: [{departure: departure}, {arrival: arrival}, {date: newDate}]});
     }
 }
 

@@ -17,12 +17,8 @@ router.get('/login', function(req, res, next) {
 // Route Sign-Up
 router.post('/sign-up', async function(req, res, next) {
 
-  console.log("BODY : ", req.body);
 
   var user = await appController.addUser(req.body.name, req.body.firstname, req.body.email, req.body.password);  
-
-
-  console.log('USERS : ', user);
 
   res.render('index', { title: 'Express' });
 });
@@ -36,6 +32,10 @@ router.post('/sign-in', async function(req, res, next) {
   req.session.user = user;
   res.render('findTrip', { title: 'Express' });
 });
+router.get('/sign-in', async function(req, res, next) {
+  res.render('findTrip', { title: 'Express' });
+});
+
 
 router.get('/journey', async function (req, res, next){
   res.render('journey', {basketOrder: 0})
@@ -45,15 +45,21 @@ router.get('/journey', async function (req, res, next){
 
 
 router.get('/findtrip', async function(req, res, next) {
-  if(!req.session.user)
+  if(req.session.user== undefined)
+  {
     res.redirect('/login');
+    return;
+  }
   res.render('findTrip');
 });
 
 router.post('/journeys', async function(req, res, next) {
-  if(!req.session.user)
+  if(req.session.user== undefined)
+  {
     res.redirect('/login');
-  res.render('journey', {journeys: await appController.getJourneyDepartureArrival(req.body.departure, req.body.arrival)});
+    return;
+  }
+  res.render('journey', {journeys: await appController.getJourneyDepartureArrivalDate(req.body.departure, req.body.arrival, req.body.date)});
 });
 
 
@@ -61,8 +67,11 @@ router.post('/journeys', async function(req, res, next) {
 
 
 router.get('/basket', async function(req, res, next) {
-  if(!req.session.user)
+  if(req.session.user== undefined)
+  {
     res.redirect('/login');
+    return;
+  }
   var basket = await appController.getUserBasket(req.session.user._id);
   res.render('basket', { title: 'basket' });
 });
@@ -73,15 +82,22 @@ router.get('/basket', async function(req, res, next) {
 
 
 router.get('/mytickets', function(req, res, next) {
-  if(!req.session.user)
+  if(req.session.user== undefined)
+  {
     res.redirect('/login');
+    return;
+  }
   res.render('mytickets', { title: 'mytickets' });
 });
 
 
 router.get('/addToBasket', async function(req, res, next) {
-  if(!req.session.user)
+  if(req.session.user== undefined)
+  {
     res.redirect('/login');
+    return;
+  }
+
   await appController.addJourneyToBasket(req.session.user._id, req.query.journeyid);
   console.log("BASKET ROUTE ", await appController.getUserBasket(req.session.user._id));
   res.render('mytickets', { basket: await appController.getUserBasket(req.session.user._id) });
@@ -91,12 +107,24 @@ router.get('/addToBasket', async function(req, res, next) {
 
 
 router.get('/confirmAchat', async function(req, res, next) {
-  if(!req.session.user)
-  res.redirect('/login');
+  if(req.session.user== undefined)
+  {
+    res.redirect('/login');
+    return;
+  }
   await appController.addJourneysFromBasketToJourneys(req.session.user._id);
   res.render('lastTrip', {basket: await appController.getUserJourneys(req.session.user._id)});
 });
 
+
+router.get('/lasttrip', async function(req, res, next) {
+  if(req.session.user== undefined)
+  {
+    res.redirect('/login');
+    return;
+  }
+  res.render('lastTrip', {basket: await appController.getUserJourneys(req.session.user._id)});
+});
 
 module.exports = router;
 

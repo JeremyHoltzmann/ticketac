@@ -45,6 +45,10 @@ class appController  {
        return await this.journeyCrudControler.getJourneyDepartureArrival(departure, arrival);
    }
 
+   async getJourneyDepartureArrivalDate(departure, arrival, date){
+    return await this.journeyCrudControler.getJourneyDepartureArrivalDate(departure, arrival, date);
+}
+
    async getUserBasket(userId){
        return await this.userCrudControler.getUserBasket(userId);
    }

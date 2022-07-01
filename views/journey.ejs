@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </title>Ticketac Journeys</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/style.css">
@@ -27,11 +26,13 @@
                         <div class="text-black">Train Departure at : <%= journeys[i].departureTime%></div>
                         <span>
                             <%= journeys[i].price %>€
+                             <a href="/addToBasket?journeyid=<%= journeys[i]._id %>">
+
                             <button type="button" class="btn btn-danger">
-                                <a href="/addToBasket?journeyid=<%= journeys[i]._id %>">
                                     Ok
-                                </a>
                             </button>
+                            </a>
+
                         </span>
                     </div>
                 <%}%>
