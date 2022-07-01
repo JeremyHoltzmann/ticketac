@@ -20,14 +20,12 @@ router.post('/sign-up', async function(req, res, next) {
 
   var user = await appController.addUser(req.body.name, req.body.firstname, req.body.email, req.body.password);  
 
-  res.render('index', { title: 'Express' });
+  res.render('/');
 });
 
 // Route Sign-In
 
 router.post('/sign-in', async function(req, res, next) {
-
-
   var user = await appController.getUser(req.body.email, req.body.password);  
   req.session.user = user;
   res.render('findtrip', { title: 'Express' });
@@ -47,20 +45,16 @@ router.get('/journey', async function (req, res, next){
 
 
 router.get('/findtrip', async function(req, res, next) {
+  console.log('User Session ', req.session.user);
   // if(req.session.user== undefined)
   // {
   //   res.redirect('/login');
   //   return;
   // }
-  res.render('findTrip');
+  res.render('findtrip');
 });
 
 router.post('/journeys', async function(req, res, next) {
-  if(req.session.user== undefined)
-  {
-    res.redirect('/login');
-    return;
-  }
   res.render('journey', {journeys: await appController.getJourneyDepartureArrivalDate(req.body.departure, req.body.arrival, req.body.date), date: req.body.date});
 });
 
@@ -69,6 +63,7 @@ router.post('/journeys', async function(req, res, next) {
 
 
 router.get('/basket', async function(req, res, next) {
+  console.log('User Session ', req.session.user);
   if(req.session.user== undefined)
   {
     res.redirect('/login');
@@ -84,6 +79,7 @@ router.get('/basket', async function(req, res, next) {
 
 
 router.get('/mytickets', function(req, res, next) {
+  console.log('User Session ', req.session.user);
   if(req.session.user== undefined)
   {
     res.redirect('/login');
@@ -94,6 +90,8 @@ router.get('/mytickets', function(req, res, next) {
 
 
 router.get('/addToBasket', async function(req, res, next) {
+  console.log('User Session ', req.session.user);
+
   if(req.session.user== undefined)
   {
     res.redirect('/login');
@@ -109,6 +107,7 @@ router.get('/addToBasket', async function(req, res, next) {
 
 
 router.get('/confirmAchat', async function(req, res, next) {
+  console.log('User Session ', req.session.user);
   if(req.session.user== undefined)
   {
     res.redirect('/login');
@@ -120,12 +119,13 @@ router.get('/confirmAchat', async function(req, res, next) {
 
 
 router.get('/lasttrip', async function(req, res, next) {
-  if(req.session.user== undefined)
+  console.log('User Session ', req.session.user);
+  if(req.session.user == undefined)
   {
     res.redirect('/login');
     return;
   }
-  res.render('lastTrip', {basket: await appController.getUserJourneys(req.session.user._id)});
+  res.render('lasttrip', {basket: await appController.getUserJourneys(req.session.user._id)});
 });
 
 module.exports = router;
