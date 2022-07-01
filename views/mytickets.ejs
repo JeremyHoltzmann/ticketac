@@ -38,31 +38,20 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td name="journey" type="">1 </td>
-                        <td name="date" type="date">02/08/2019</td>
-                        <td name="journey" type=""> Paris / Lille</td>
-                        <td name="journey" type="">15:00 pm</td>
-                        <td name="journey" type="">93€ </td>
-                    </tr>
-                    <tr>
-                        <td name="journey" type="">2 </td>
-                        <td name="journey" type=""> Paris / Bordeaux</td>
-                        <td name="journey" type="">19:00 pm </td>
-                        <td name="journey" type="">125 € </td>
-                    </tr>
-                    <tr class="table-danger text-dark p-3 mb-2  ">
-
-                        <td name="date" type="date" class="scope p-3 mb-2" method="GET" scope="col">Total</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td name="journey" type="journey" class="scope p-3 mb-2" method="GET" scope="col">218 € </td>
-
-                    </tr>
-
+                    <% for(var i=0; i<basket.length; i++){%>
+                        <tr>
+                            <td name="journey" type=""><%= i+1 %> </td>
+                            <td name="date" type="date"><%= basket[i].date %></td>
+                            <td name="journey" type=""> <%= basket[i].departure + "/" + basket[i].arrival %> </td>
+                            <td name="journey" type=""><%= basket[i].departuretime %></td>
+                            <td name="journey" type=""> <%= basket[i].price %> € </td>
+                        </tr>
+                    } 
+                    %>
                 </tbody>
+            
             </table>
+            
             <div class="d-flex flex-row-reverse">
                 <button type="submit" class="btn btn-info btn-danger m-3 ">Confirm</button>
             </div>
