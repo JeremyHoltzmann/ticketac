@@ -50,7 +50,7 @@ router.get('/findtrip', async function(req, res, next) {
     res.redirect('/login');
     return;
   }
-  res.render('findTrip');
+  res.render('/findTrip');
 });
 
 router.post('/journeys', async function(req, res, next) {
