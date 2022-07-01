@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ticketac My Tickets</title>
+    <!-- To add in order to scale the view for mobiles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER NAVBAR-->
+
+    <div class="row">
+
+        <%-include("./partial/navbar.ejs") %>
+
+    </div>
+
+    <div class="content">
+
+
+        <!-- ONE WAY TICKET AREA -->
+        <div class="col-12 col-sm-6 text-center">
+            <h4 class="titleForm text-white ">My Last Trip : </h4>
+            <table class="table table-light table-borderless ">
+
+                <thead class="table-light text-dark">
+                    <th name="date" type="date" class="scope" method="GET" scope="col">N°</th>
+                    <th name="date" type="date" class="scope" method="GET" scope="col">Date</th>
+                    <th name="journey" type="journey" class="scope" method="GET" scope="col">Journey</th>
+                    <th name="journey" type="journey" class="scope" method="GET" scope="col">Departure Time</th>
+                    <th name="journey" type="journey" class="scope" method="GET" scope="col">Price </th>
+                </thead>
+
+                <tbody>
+                    <% for(var i=0; i<basket.length; i++){%>
+                        <tr>
+                            <td name="journey" type=""><%= i+1 %> </td>
+                            <td name="date" type="date"><%= formatDate(basket[i].date)  %></td>
+                            <td name="journey" type=""> <%= basket[i].departure + "/" + basket[i].arrival %> </td>
+                            <td name="journey" type=""><%= basket[i].departureTime %></td>
+                            <td name="journey" type=""> <%= basket[i].price %> € </td>
+                        </tr>
+                    <%} 
+                    %>
+                </tbody>
+            
+            </table>
+
+            <div class="d-flex flex-row-reverse">
+                <button type="button" class="btn btn-info btn-danger m-3" ><a href='/findTrip'>Home</a></button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <%-include("./partial/copyright.ejs") %>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

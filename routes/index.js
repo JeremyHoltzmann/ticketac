@@ -7,8 +7,7 @@ var appController = new appControllerClass();
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  console.log('GET JOURNEYS : ', await appController.getJourneyDepartureArrival('Lille','Bordeaux'));
-  res.render('index', { title: 'Express' });
+  res.redirect('/login');
 });
 
 router.get('/login', function(req, res, next) {
@@ -35,7 +34,6 @@ router.post('/sign-in', async function(req, res, next) {
 
   var user = await appController.getUser(req.body.email, req.body.password);  
   req.session.user = user;
-  console.log('REQ SESSION : ', req.session);
   res.render('findTrip', { title: 'Express' });
 });
 
@@ -47,12 +45,14 @@ router.get('/journey', async function (req, res, next){
 
 
 router.get('/findtrip', async function(req, res, next) {
-
+  if(!req.session.user)
+    res.redirect('/login');
   res.render('findTrip');
 });
 
 router.post('/journeys', async function(req, res, next) {
-
+  if(!req.session.user)
+    res.redirect('/login');
   res.render('journey', {journeys: await appController.getJourneyDepartureArrival(req.body.departure, req.body.arrival)});
 });
 
@@ -61,7 +61,8 @@ router.post('/journeys', async function(req, res, next) {
 
 
 router.get('/basket', async function(req, res, next) {
-
+  if(!req.session.user)
+    res.redirect('/login');
   var basket = await appController.getUserBasket(req.session.user._id);
   res.render('basket', { title: 'basket' });
 });
@@ -72,13 +73,15 @@ router.get('/basket', async function(req, res, next) {
 
 
 router.get('/mytickets', function(req, res, next) {
-
+  if(!req.session.user)
+    res.redirect('/login');
   res.render('mytickets', { title: 'mytickets' });
 });
 
 
 router.get('/addToBasket', async function(req, res, next) {
-
+  if(!req.session.user)
+    res.redirect('/login');
   await appController.addJourneyToBasket(req.session.user._id, req.query.journeyid);
   console.log("BASKET ROUTE ", await appController.getUserBasket(req.session.user._id));
   res.render('mytickets', { basket: await appController.getUserBasket(req.session.user._id) });
@@ -88,8 +91,10 @@ router.get('/addToBasket', async function(req, res, next) {
 
 
 router.get('/confirmAchat', async function(req, res, next) {
+  if(!req.session.user)
+  res.redirect('/login');
   await appController.addJourneysFromBasketToJourneys(req.session.user._id);
-  res.render('mytickets', {basket: await appController.getUserJourneys(req.session.user._id)});
+  res.render('lastTrip', {basket: await appController.getUserJourneys(req.session.user._id)});
 });
 
 

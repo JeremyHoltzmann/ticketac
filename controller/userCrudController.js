@@ -61,9 +61,10 @@ class userCrudControler extends genericCrudController
 
     async addJourneysFromBasketToJourneys(userId){
         var basket = await this.getUserBasket(userId);
+
         this.clearUserBasket(userId);
         await this.modelController.updateOne({_id: userId},
-            { $set: {basket: basket}});
+            { $push: {journeys: basket}});
     }
 }
 
