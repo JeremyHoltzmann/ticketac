@@ -18,7 +18,7 @@
             {%>
                 <div>Oops ! No trains available</div>
             <%}else {%>
-                <div>Ticket available on : </div>
+                <div>Ticket available on : <%= formatDate(date) %> </div>
             <ul class="list-group col col-12">
                 <% for(var i = 0; i < journeys.length; i++){ %>
                     <div class="list-group-item m-1 p-5 d-inline-flex justify-content-between">

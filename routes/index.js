@@ -59,7 +59,7 @@ router.post('/journeys', async function(req, res, next) {
     res.redirect('/login');
     return;
   }
-  res.render('journey', {journeys: await appController.getJourneyDepartureArrivalDate(req.body.departure, req.body.arrival, req.body.date)});
+  res.render('journey', {journeys: await appController.getJourneyDepartureArrivalDate(req.body.departure, req.body.arrival, req.body.date), date: req.body.date});
 });
 
 
